@@ -1,31 +1,37 @@
 const { Router } = require("express");
 const {
+  getMetodologias,
+  getMetodologiaById,
+  getTablaComparativa,
   getInvestigacionCompleta,
   getConcepto,
   getCaracteristicas,
   getClasificacion,
-  getTablaComparativa,
-  getReferencias
+  getReferencias,
+  getFundamentos,
+  getModeladoFuncional,
+  getCriteriosSeleccion,
+  getCasoEstudio
 } = require("../controllers/metodologias.controller");
 
 const router = Router();
 
-// GET /api/metodologias -> toda la investigacion en un solo JSON
-router.get("/", getInvestigacionCompleta);
+// GET /api/metodologias -> Arreglo con las 22 metodologias completas (para el Front)
+router.get("/", getMetodologias);
 
-// GET /api/metodologias/concepto
+// Endpoints conceptuales y complementarios
+router.get("/investigacion", getInvestigacionCompleta);
 router.get("/concepto", getConcepto);
-
-// GET /api/metodologias/caracteristicas
 router.get("/caracteristicas", getCaracteristicas);
-
-// GET /api/metodologias/clasificacion?tipo=tradicionales|agiles
 router.get("/clasificacion", getClasificacion);
-
-// GET /api/metodologias/comparativa
 router.get("/comparativa", getTablaComparativa);
-
-// GET /api/metodologias/referencias
 router.get("/referencias", getReferencias);
+router.get("/fundamentos", getFundamentos);
+router.get("/modelado-funcional", getModeladoFuncional);
+router.get("/criterios-seleccion", getCriteriosSeleccion);
+router.get("/caso-estudio", getCasoEstudio);
+
+// GET /api/metodologias/:id -> Detalle por ID (scrum, waterfall, xp, etc.)
+router.get("/:id", getMetodologiaById);
 
 module.exports = router;

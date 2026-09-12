@@ -1,12 +1,12 @@
 const { Router } = require("express");
-const { getEquipo, getIntegrantePorId } = require("../controllers/equipo.controller");
+const { getEquipo, getMiembroById } = require("../controllers/equipo.controller");
 
 const router = Router();
 
-// GET /api/equipo -> info completa del equipo
+// GET /api/equipo -> Arreglo de integrantes del equipo
 router.get("/", getEquipo);
 
-// GET /api/equipo/:id -> info de un integrante especifico
-router.get("/:id", getIntegrantePorId);
+// GET /api/equipo/:id -> Detalle por ID
+router.get("/:id", getMiembroById);
 
 module.exports = router;

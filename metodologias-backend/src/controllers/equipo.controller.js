@@ -3,13 +3,20 @@ const { success } = require("../utils/response");
 
 /**
  * GET /api/equipo
- * Devuelve la informacion completa del equipo (proyecto + integrantes).
+ * Devuelve el equipo completo con data como arreglo (compatible 100% con Frontend).
  */
 function getEquipo(req, res, next) {
   try {
     return success(res, {
-      message: "Informacion del equipo de trabajo obtenida correctamente",
-      data: equipo
+      message: "Equipo de trabajo obtenido correctamente",
+      data: equipo.integrantes,
+      metadata: {
+        proyecto: equipo.proyecto,
+        subtitulo: equipo.subtitulo,
+        asignatura: equipo.asignatura,
+        dinamica: equipo.dinamica,
+        totalMiembros: equipo.integrantes.length
+      }
     });
   } catch (err) {
     next(err);
@@ -18,26 +25,38 @@ function getEquipo(req, res, next) {
 
 /**
  * GET /api/equipo/:id
- * Devuelve un integrante especifico por su id (ej: back-01, front-01).
+ * Devuelve un miembro especifico por su id (erika, andrey, miguel, sergio)
  */
-function getIntegrantePorId(req, res, next) {
+function getMiembroById(req, res, next) {
   try {
     const { id } = req.params;
-    const integrante = equipo.integrantes.find((persona) => persona.id === id);
+    const cleanId = String(id).toLowerCase().trim();
 
-    if (!integrante) {
-      const err = new Error(`No se encontro un integrante con id '${id}'`);
+    const miembro = equipo.integrantes.find(
+      (m) =>
+        m.id.toLowerCase() === cleanId ||
+        (cleanId.includes("back") && m.id === "andrey") ||
+        (cleanId.includes("front") && m.id === "miguel") ||
+        (cleanId.includes("qa") && m.id === "sergio") ||
+        (cleanId.includes("investig") && m.id === "erika")
+    );
+
+    if (!miembro) {
+      const err = new Error(`Miembro del equipo con ID '${id}' no encontrado.`);
       err.statusCode = 404;
       throw err;
     }
 
     return success(res, {
-      message: `Informacion del integrante ${id}`,
-      data: integrante
+      message: `Informacion de ${miembro.nombre} obtenida correctamente`,
+      data: miembro
     });
   } catch (err) {
     next(err);
   }
 }
 
-module.exports = { getEquipo, getIntegrantePorId };
+module.exports = {
+  getEquipo,
+  getMiembroById
+};

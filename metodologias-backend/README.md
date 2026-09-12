@@ -109,45 +109,41 @@ http://localhost:4000
 | GET | `/` | Verifica que la API está activa |
 | GET | `/api/health` | Health check simple (`status: UP`) |
 
-### 4.2 `/api/metodologias` — Investigación
+### 4.2 `/api/metodologias` — Metodologías de Software (22 Metodologías)
 
 | Método | Endpoint | Descripción |
 |---|---|---|
-| GET | `/api/metodologias` | Devuelve **toda** la investigación en un solo JSON (concepto + características + clasificación + tabla comparativa + referencias) |
-| GET | `/api/metodologias/concepto` | Devuelve solo el concepto de Metodologías de Software |
-| GET | `/api/metodologias/caracteristicas` | Devuelve el listado de características |
-| GET | `/api/metodologias/clasificacion` | Devuelve la clasificación principal (Tradicionales y Ágiles) |
-| GET | `/api/metodologias/clasificacion?tipo=agiles` | Filtra la clasificación (`tradicionales` o `agiles`) |
-| GET | `/api/metodologias/comparativa` | Devuelve la tabla comparativa Tradicionales vs Ágiles |
-| GET | `/api/metodologias/referencias` | Devuelve las referencias bibliográficas |
+| GET | `/api/metodologias` | Devuelve el **listado de las 22 metodologías** como arreglo estructurado (formato directo para consumo del Frontend). Soporta `?tipo=agil\|tradicional`, `?categoria=...` y `?search=texto` |
+| GET | `/api/metodologias/:id` | Devuelve el detalle completo de una metodología por su identificador (ej: `scrum`, `waterfall`, `xp`, `kanban`, `modelo-v`, `espiral`, `rup`, `cleanroom`, `safe`, `shape-up`, etc.) |
+| GET | `/api/metodologias/investigacion` | Devuelve el objeto completo de la investigación teórica unificada |
+| GET | `/api/metodologias/concepto` | Concepto epistemológico y delimitación de proceso, SDLC y metodología |
+| GET | `/api/metodologias/caracteristicas` | Listado de características nucleares de las metodologías |
+| GET | `/api/metodologias/clasificacion` | Clasificación en tradicionales, ágiles, escaladas y contemporáneas |
+| GET | `/api/metodologias/referencias` | Bibliografía formal canónica (Royce, Boehm, Jacobson, Beck, Schwaber, etc.) |
 
-**Ejemplo de respuesta — `GET /api/metodologias/concepto`:**
-```json
-{
-  "ok": true,
-  "message": "Concepto de Metodologias de Software",
-  "data": {
-    "definicion": "Una metodologia de software es un conjunto estructurado...",
-    "proposito": ["Reducir la incertidumbre...", "..."],
-    "origen": "Surgen en los anos 70 como respuesta a la 'crisis del software'..."
-  }
-}
-```
-
-### 4.3 `/api/equipo` — Roles del equipo
+### 4.3 `/api/comparativa` — Matriz Comparativa Tradicional vs. Ágil
 
 | Método | Endpoint | Descripción |
 |---|---|---|
-| GET | `/api/equipo` | Devuelve la información del proyecto y todos los integrantes |
-| GET | `/api/equipo/:id` | Devuelve un integrante puntual (ej: `back-01`, `front-01`) |
+| GET | `/api/comparativa` | Matriz de 9 criterios analíticos (tolerancia al cambio, documentación, entrega de valor, cliente, métricas, riesgos, calidad, arquitectura, estructura) |
 
-**Ejemplo:** `GET /api/equipo/back-01` devuelve el rol, responsabilidades,
-entregables y tecnologías del Ingeniero de Backend.
+### 4.4 `/api/equipo` — Roles de los 4 Integrantes
 
-> Nota: el objeto `front-01` queda con estado `"Pendiente de informacion del companero"`
-> listo para completarse en `src/data/equipo.data.js` en cuanto el compañero de
-> Frontend envíe su descripción de rol — no requiere tocar ninguna otra parte
-> del backend.
+| Método | Endpoint | Descripción |
+|---|---|---|
+| GET | `/api/equipo` | Devuelve el listado de los 4 integrantes con sus roles, responsabilidades, tecnologías, entregables formales y fechas de entrega para la sustentación Shark Tank |
+| GET | `/api/equipo/:id` | Devuelve la ficha técnica individual (`erika`, `andrey`, `miguel`, `sergio`) |
+
+### 4.5 Endpoints Avanzados de Investigación Profunda
+
+| Método | Endpoint | Descripción |
+|---|---|---|
+| GET | `/api/fundamentos` | Crisis del software (OTAN 1968), definiciones ISO/IEC/IEEE 12207 y tabla canónica completa de fases del SDLC |
+| GET | `/api/modelado-funcional` | Casos de uso estructurados (Ivar Jacobson), relaciones UML, matriz REQ vs. HU vs. CU y trazabilidad bancaria |
+| GET | `/api/criterios-seleccion` | Modelo Radar de Boehm-Turner (niveles de Cockburn) y Matriz de Complejidad de Stacey |
+| GET | `/api/caso-estudio` | Arquitectura metodológica híbrida de la Plataforma Nacional de Pagos Electrónicos |
+| GET | `/api/investigacion` | Paquete global con el 100% de la investigación y datos |
+| GET | `/api/raw-data` | Contenido en bruto del archivo `data.json` |
 
 ### 4.4 Manejo de errores (ejemplos reales probados)
 

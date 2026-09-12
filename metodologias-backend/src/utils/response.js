@@ -4,12 +4,15 @@
  * endpoint que consuma. Esto es una buena practica de arquitectura REST.
  */
 
-function success(res, { statusCode = 200, message = "OK", data = null }) {
-  return res.status(statusCode).json({
+function success(res, { statusCode = 200, message = "OK", data = null, metadata = null }) {
+  const body = {
     ok: true,
+    success: true,
     message,
     data
-  });
+  };
+  if (metadata) body.metadata = metadata;
+  return res.status(statusCode).json(body);
 }
 
 function error(res, { statusCode = 500, message = "Ha ocurrido un error inesperado" }) {

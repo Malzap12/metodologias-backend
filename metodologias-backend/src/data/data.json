@@ -1,0 +1,1002 @@
+{
+  "proyecto": {
+    "titulo": "Metodologías de Desarrollo de Software",
+    "subtitulo": "Fundamentos Epistemológicos, Taxonomía Integral, Modelado Funcional, Enfoques Tradicionales y Ágiles, Escalado y Criterios de Selección Arquitectural",
+    "asignatura": "Ingeniería de Software · Metodologías de Desarrollo",
+    "fecha_entrega": "Septiembre 2026",
+    "version": "2.0.0"
+  },
+  "equipo": [
+    {
+      "id": "investigador",
+      "nombre": "Erika Yuliana Gómez Rodríguez",
+      "rol": "Líder de Investigación y Arquitectura de Contenidos",
+      "etiqueta": "Investigador",
+      "responsabilidades": [
+        "Estructurar y profundizar el marco teórico de metodologías de desarrollo de software (Unidad 4).",
+        "Documentar conceptos, taxonomía tradicional vs. ágil y esquemas de datos lógicos.",
+        "Generar el archivo maestro data.json estructurado para alimentar el Backend.",
+        "Elaborar la argumentación técnica y teórica para la sustentación académica."
+      ],
+      "entregables": [
+        "Documento formal de investigación (PDF/LaTeX).",
+        "Archivo data.json estructurado con la totalidad de textos y comparativas."
+      ]
+    },
+    {
+      "id": "backend",
+      "nombre": "Alixon Andrey López León",
+      "rol": "Ingeniero de Backend y Arquitectura de Datos",
+      "etiqueta": "Back",
+      "responsabilidades": [
+        "Diseñar, programar y garantizar la estabilidad de la lógica de servidor y capa de datos.",
+        "Construir API REST modular y escalable que exponga la investigación de metodologías.",
+        "Implementar buenas prácticas de arquitectura, manejo de errores y políticas CORS.",
+        "Documentar técnicamente los endpoints (/api/metodologias, /api/equipo, etc.) para el Front."
+      ],
+      "entregables": [
+        "Servidor y API REST modular en repositorio Git.",
+        "Endpoints operativos documentados y enlace/mock listo para el Frontend."
+      ]
+    },
+    {
+      "id": "frontend",
+      "nombre": "Miguel Ángel Alza Sanabria",
+      "rol": "Ingeniero de Frontend y Experiencia de Usuario",
+      "etiqueta": "Front - Encargado de Envío",
+      "responsabilidades": [
+        "Diseñar e implementar la interfaz visual (UI/UX) moderna, interactiva y responsiva.",
+        "Consumir eficientemente las APIs del Backend sin quemar textos en el cliente.",
+        "Crear componentes dinámicos para visualizar y comparar metodologías interactivamente.",
+        "Asegurar accesibilidad y rendimiento web, y gestionar la entrega oficial ante el docente."
+      ],
+      "entregables": [
+        "Interfaz web responsiva conectada al Backend.",
+        "Repositorio cliente listo para producción y entrega oficial."
+      ]
+    },
+    {
+      "id": "qa-devops",
+      "nombre": "Sergio Adolfo Hernández Millán",
+      "rol": "Especialista en QA, DevOps y Despliegue",
+      "etiqueta": "Despliegue / Calidad",
+      "responsabilidades": [
+        "Diseñar y ejecutar pruebas funcionales sobre endpoints y reactividad de la interfaz.",
+        "Configurar entornos de integración y despliegue continuo (CI/CD).",
+        "Desplegar Frontend y Backend en plataformas cloud gratuitas (Vercel, Render).",
+        "Asegurar comunicación sin errores de CORS y redactar el README técnico del proyecto."
+      ],
+      "entregables": [
+        "Aplicación fullstack desplegada en la nube con URLs públicas operativas.",
+        "Informe de pruebas de calidad (QA) y README técnico final."
+      ]
+    }
+  ],
+  "fundamentos": {
+    "conferencia_otan_1968": {
+      "titulo": "La Conferencia de la OTAN de 1968 y la Crisis del Software",
+      "año": 1968,
+      "lugar": "Garmisch, Alemania",
+      "descripcion": "Punto de inflexión histórico donde se diagnosticó oficialmente la 'Crisis del Software'. El rápido avance del hardware de tercera generación superó la capacidad de construir programas informáticos confiables y predecibles.",
+      "enfoque_artesanal_previo": "Práctica 'code-and-fix' (codificar sin diseño formal y corregir indefinidamente sobre la marcha), lo que causaba sobrecostos masivos, retrasos inmanejables y fragilidad operativa.",
+      "quiebre_epistemologico": "Exigencia de abandonar el empirismo intuitivo para adoptar principios sistemáticos, mensurables y repetibles característicos de las ingenierías consolidadas."
+    },
+    "delimitacion_conceptual": [
+      {
+        "termino": "Proceso de Software",
+        "estandar": "ISO/IEC/IEEE 12207",
+        "definicion": "Conjunto estructurado de actividades técnicas, administrativas, organizacionales y humanas para concebir, construir, desplegar y mantener software. Clasifica actividades en primarias (adquisición, desarrollo), de soporte (aseguramiento de calidad, configuración, V&V) y organizacionales (gestión, mejora continua)."
+      },
+      {
+        "termino": "Modelo de Ciclo de Vida (SDLC)",
+        "definicion": "Abstracción arquitectónica y temporal que define la estrategia de secuenciación, concurrencia, paralelismo e iteración que interconecta las actividades del proceso (lineal, iterativo, incremental o adaptativo)."
+      },
+      {
+        "termino": "Metodología de Desarrollo",
+        "definicion": "Marco de trabajo operativo y prescriptivo que concreta el proceso y el ciclo de vida. Amalgama procedimientos operativos, notaciones de modelado formal (UML), estándares de documentación, herramientas CASE y asignación rigurosa de roles y responsabilidades."
+      }
+    ],
+    "fases_sdlc": [
+      {
+        "fase": "Ingeniería de Requisitos",
+        "entradas": "Casos de negocio, objetivos estratégicos y necesidades directas de los stakeholders.",
+        "actividades": "Elicitación formal (entrevistas, observación), análisis de viabilidad técnica y operativa, modelado conceptual, resolución de ambigüedades, priorización y especificación de restricciones.",
+        "entregables": "Especificación de Requisitos de Software (SRS/ERS, IEEE 830 / 29148), catálogo de requisitos funcionales y no funcionales.",
+        "control_calidad": "Revisiones técnicas formales por pares, matrices de consistencia semántica y validación contractual."
+      },
+      {
+        "fase": "Análisis del Sistema",
+        "entradas": "Especificación formal de requisitos aprobada por los interesados.",
+        "actividades": "Descomposición funcional, modelado de dominio, análisis de comportamiento dinámico, definición de fronteras sistémicas y estructuración de casos de uso.",
+        "entregables": "Modelos conceptuales de dominio, diagramas de interacción de alto nivel, modelos de clases conceptuales y diccionarios de datos.",
+        "control_calidad": "Auditorías de completitud lógica, verificación de ausencia de contradicciones y evaluación de suficiencia funcional."
+      },
+      {
+        "fase": "Diseño Arquitectural y Detallado",
+        "entradas": "Modelos conceptuales y requisitos no funcionales (desempeño, seguridad, escalabilidad, disponibilidad).",
+        "actividades": "Selección de patrones arquitecturales, particionamiento en subsistemas modulares, diseño de bases de datos, especificación de contratos de interfaz (APIs) y diseño de experiencia de usuario.",
+        "entregables": "Documento de Arquitectura de Software (SAD), esquemas relacionales o NoSQL, especificaciones de contratos API y prototipos navegables.",
+        "control_calidad": "Evaluación formal de arquitecturas (ATAM), verificación de bajo acoplamiento y alta cohesión modular."
+      },
+      {
+        "fase": "Implementación y Codificación",
+        "entradas": "Diseños técnicos detallados, especificaciones de arquitectura y contratos de interfaz.",
+        "actividades": "Transformación de diseños en código ejecutable, adopción de patrones de codificación, implementación de pruebas unitarias y refactorización continua.",
+        "entregables": "Código fuente bajo control de versiones (Git), artefactos compilables y suites de pruebas unitarias automatizadas.",
+        "control_calidad": "Inspecciones estáticas de código (SAST), estándares de estilo, umbrales de complejidad ciclomática y cobertura de pruebas."
+      },
+      {
+        "fase": "Verificación y Validación (V&V)",
+        "entradas": "Artefactos ejecutables integrados, requisitos formales y planes de pruebas.",
+        "actividades": "Ejecución de pruebas de integración modular, pruebas de sistema de extremo a extremo, pruebas de rendimiento/carga y pruebas de aceptación de usuario (UAT).",
+        "entregables": "Informes de ejecución de pruebas, matrices de trazabilidad de pruebas y registro formal de defectos.",
+        "control_calidad": "Tasa de resolución de incidentes críticos, cobertura de pruebas sobre especificación y certificación de criterios de aceptación."
+      },
+      {
+        "fase": "Despliegue y Puesta en Producción",
+        "entradas": "Software verificado y validado, scripts de despliegue y runbooks operativos.",
+        "actividades": "Aprovisionamiento de infraestructura operativa, migración de esquemas de datos, configuración de entornos productivos, conmutación de tráfico y pruebas de humo.",
+        "entregables": "Sistema disponible para usuarios finales, registros de despliegue, planes de contingencia (rollback) y manuales técnicos.",
+        "control_calidad": "Monitoreo de disponibilidad inicial (APM), auditorías de latencia en producción y acta formal de recepción operativa."
+      },
+      {
+        "fase": "Mantenimiento y Evolución",
+        "entradas": "Solicitudes de cambio, reportes de anomalías en producción y nuevas normativas legales.",
+        "actividades": "Depuración correctiva de defectos residuales, adaptación a nuevas plataformas, optimización perfectiva y refactorización preventiva.",
+        "entregables": "Versiones de actualización (patches o releases), documentación técnica sincronizada y suites de pruebas de regresión ampliadas.",
+        "control_calidad": "Evaluación de degradación mediante pruebas de regresión continuas, auditorías de SLA y control de deuda técnica."
+      }
+    ]
+  },
+  "metodologias": [
+    {
+      "id": "cascada",
+      "nombre": "Modelo en Cascada (Waterfall)",
+      "categoria": "tradicional",
+      "creador_origen": "Winston W. Royce",
+      "año": 1970,
+      "filosofia": "Desarrollo lineal, secuencial y predecible. Cada fase debe terminarse y validarse documentalmente antes de iniciar la siguiente.",
+      "caracteristicas": [
+        "Estructura secuencial rígida con compuertas de decisión (gates).",
+        "Alcance y requisitos formalmente congelados en etapas iniciales.",
+        "Alta dependencia de documentación contractual exhaustiva.",
+        "Segregación estricta de roles por etapas especializadas."
+      ],
+      "fases_o_practicas": [
+        "Requisitos del Sistema y Software",
+        "Análisis de Requerimientos",
+        "Diseño del Programa y Arquitectura",
+        "Codificación e Implementación",
+        "Pruebas e Integración",
+        "Operación y Mantenimiento"
+      ],
+      "ventajas": [
+        "Control administrativo y presupuestario sencillo en proyectos cerrados.",
+        "Claridad absoluta en cronogramas e hitos de entrega documentales.",
+        "Estructura ideal para contratos de licitación pública con alcance inmutable."
+      ],
+      "desventajas": [
+        "Trampa de la integración tardía: defectos de diseño emergen hasta las pruebas finales.",
+        "Costo exponencial de reparación de errores según la Curva de Barry Boehm.",
+        "Incapacidad estructural para asimilar cambios de requisitos sobre la marcha."
+      ],
+      "casos_recomendados": "Proyectos con especificaciones estables, requisitos plenamente conocidos y tecnologías maduras sin incertidumbre."
+    },
+    {
+      "id": "modelo-v",
+      "nombre": "Modelo en V (Verificación y Validación Simétricas)",
+      "categoria": "tradicional",
+      "creador_origen": "Industrias Aeroespacial y Defensa de Alemania y EE.UU.",
+      "año": 1980,
+      "filosofia": "Simetría estructural entre las fases de descomposición/diseño técnico y las fases de prueba/integración.",
+      "caracteristicas": [
+        "Plegado visual en 'V' donde cada fase de diseño tiene su contraparte de prueba simétrica.",
+        "Planificación temprana de pruebas en paralelo al análisis técnico.",
+        "Trazabilidad vertical estricta de verificación (cumplimiento de diseño) y validación (cumplimiento de necesidades)."
+      ],
+      "fases_o_practicas": [
+        "Requisitos de Negocio <-> Pruebas de Aceptación (UAT)",
+        "Requisitos del Sistema <-> Pruebas de Sistema",
+        "Diseño Arquitectural <-> Pruebas de Integración",
+        "Diseño Detallado <-> Pruebas Unitarias",
+        "Vértice inferior: Codificación"
+      ],
+      "ventajas": [
+        "Elimina la desconexión temporal de las pruebas de la cascada.",
+        "Diseño de casos de prueba desde las primeras fases del proyecto.",
+        "Alta confiabilidad y rigurosa trazabilidad documental."
+      ],
+      "desventajas": [
+        "Conserva la rigidez secuencial de la cascada para cambios funcionales.",
+        "No genera software ejecutable intermedio visible para los usuarios finales."
+      ],
+      "casos_recomendados": "Sistemas críticos con exigencias de alta confiabilidad: defensa, aeroespacial, dispositivos médicos y ferrocarriles."
+    },
+    {
+      "id": "modelo-travel-v",
+      "nombre": "Modelo Travel V y Modelo en W",
+      "categoria": "tradicional",
+      "creador_origen": "Paul Herzlich / Industria de Sistemas Embebidos y Control",
+      "año": 1993,
+      "filosofia": "Verificación transversal y continua. En el Travel V se introducen atajos cruzados con prototipos ejecutables; en el Modelo en W se ejecuta un ciclo de pruebas en paralelo desde el inicio.",
+      "caracteristicas": [
+        "Comprobaciones cruzadas intermedias (cross-travel checks).",
+        "Uso de modelos ejecutables simulados y emuladores Hardware-in-the-Loop.",
+        "Validación dinámica de diseño antes de culminar la construcción física."
+      ],
+      "fases_o_practicas": [
+        "Simulación temprana de requisitos y casos de uso ejecutables.",
+        "Rutas cruzadas de verificación entre diseño preliminar y pruebas de estrés.",
+        "Validación simétrica progresiva."
+      ],
+      "ventajas": [
+        "Detección de inconsistencias funcionales antes de la codificación final.",
+        "Mantiene la gobernanza formal reduciendo drásticamente el riesgo técnico."
+      ],
+      "desventajas": [
+        "Demanda herramientas de simulación y modelado formal avanzadas y costosas."
+      ],
+      "casos_recomendados": "Sistemas automotrices autónomos, plataformas transaccionales de liquidación bancaria masiva e infraestructura energética."
+    },
+    {
+      "id": "espiral",
+      "nombre": "Modelo Espiral de Boehm",
+      "categoria": "tradicional",
+      "creador_origen": "Barry W. Boehm",
+      "año": 1988,
+      "filosofia": "Desarrollo iterativo guiado formalmente por la evaluación y mitigación cuantitativa y cualitativa de riesgos.",
+      "caracteristicas": [
+        "Visualización geométrica en espiral de 4 cuadrantes analíticos.",
+        "La dimensión radial representa el costo acumulado; la angular, el progreso en reducción de riesgos.",
+        "Construcción sistemática de prototipos exploratorios para validar incertidumbres."
+      ],
+      "fases_o_practicas": [
+        "Cuadrante 1: Determinación de objetivos, alternativas y restricciones.",
+        "Cuadrante 2: Identificación y mitigación formal de riesgos (prototipado/simulaciones).",
+        "Cuadrante 3: Desarrollo y verificación técnica del incremento de software.",
+        "Cuadrante 4: Planificación de la siguiente fase y revisión con interesados."
+      ],
+      "ventajas": [
+        "Gestión insuperable de riesgos técnicos, financieros y operativos.",
+        "Permite combinar diferentes modelos de construcción en cuadrantes posteriores."
+      ],
+      "desventajas": [
+        "Exige especialistas de alto calibre con experiencia en análisis probabilístico de riesgo.",
+        "Complejidad de gestión contractual y presupuestaria en clientes tradicionales."
+      ],
+      "casos_recomendados": "Proyectos de gran escala con alto riesgo técnico, investigación militar, sistemas operativos centrales y desarrollo de nuevos motores gráficos."
+    },
+    {
+      "id": "rup",
+      "nombre": "Rational Unified Process (RUP)",
+      "categoria": "tradicional",
+      "creador_origen": "Ivar Jacobson, Grady Booch y James Rumbaugh (Rational / IBM)",
+      "año": 1998,
+      "filosofia": "Proceso iterativo guiado por Casos de Uso, centrado en la arquitectura y adaptado al modelado formal orientado a objetos (UML).",
+      "caracteristicas": [
+        "Matriz bidimensional: dimensión temporal (4 fases) y dimensión estática (9 disciplinas).",
+        "Hitos mayores formales con compuertas de decisión técnica ineludibles.",
+        "Línea base de arquitectura ejecutable en etapas tempranas para eliminar riesgos de soporte."
+      ],
+      "fases_o_practicas": [
+        "Incepción (Inception): Alcance, viabilidad y caso de negocio (Hito LCO).",
+        "Elaboración (Elaboration): Mitigación de riesgos y arquitectura ejecutable (Hito LCA).",
+        "Construcción (Construction): Desarrollo iterativo de casos de uso e integración (Hito IOC).",
+        "Transición (Transition): Despliegue productivo, beta testing y transferencia (Hito PR).",
+        "Disciplinas: Modelado del Negocio, Requisitos, Análisis/Diseño, Implementación, Pruebas, Despliegue, Configuración, Gestión de Proyecto y Entorno."
+      ],
+      "ventajas": [
+        "Marco de trabajo exhaustivo, formal y probado para proyectos corporativos masivos.",
+        "Trazabilidad completa entre casos de uso, arquitectura UML y componentes de código."
+      ],
+      "desventajas": [
+        "Alta sobrecarga documental y burocrática si no se adapta y personaliza.",
+        "Curva de aprendizaje pronunciada para los roles del equipo."
+      ],
+      "casos_recomendados": "Sistemas empresariales complejos, core bancario, ERPs industriales y plataformas con equipos multidisciplinarios medianos y grandes."
+    },
+    {
+      "id": "cleanroom",
+      "nombre": "Cleanroom Software Engineering",
+      "categoria": "tradicional",
+      "creador_origen": "Harlan Mills (IBM Federal Systems)",
+      "año": 1987,
+      "filosofia": "Prevención matemática absoluta de defectos en lugar de su eliminación tardía, inspirada en las salas limpias de microelectrónica.",
+      "caracteristicas": [
+        "Especificación formal basada en teoría de conjuntos, autómatas y máquinas de caja (Box Structures).",
+        "Demostración formal y lógica de corrección del código (los programadores no ejecutan pruebas unitarias).",
+        "Pruebas estadísticas independientes basadas en perfiles operacionales de uso para calcular confiabilidad matemática (MTBF)."
+      ],
+      "fases_o_practicas": [
+        "Estructuración de cajas negras, de estado y transparentes (Box Structure Specification).",
+        "Verificación formal por inspección de equipos de pares de ingenieros.",
+        "Certificación estadística de confiabilidad sin pruebas de caja blanca convencionales."
+      ],
+      "ventajas": [
+        "Tasas de defectos residuales cercanas a cero en producción.",
+        "Software con certificación matemática de confiabilidad y tolerancia a fallos."
+      ],
+      "desventajas": [
+        "Requiere formación matemática muy especializada en métodos formales.",
+        "Inaplicable para entornos de software comercial convencional con requisitos volátiles."
+      ],
+      "casos_recomendados": "Sistemas de control nuclear, aviónica crítica, dispositivos de soporte vital médico y satélites espaciales."
+    },
+    {
+      "id": "rad",
+      "nombre": "Rapid Application Development (RAD)",
+      "categoria": "tradicional",
+      "creador_origen": "James Martin",
+      "año": 1991,
+      "filosofia": "Desarrollo predictivo acelerado mediante prototipado continuo, herramientas CASE y talleres interactivos con el usuario.",
+      "caracteristicas": [
+        "Ciclos estrictamente acotados a 60-90 días.",
+        "Talleres conjuntos JAD (Joint Application Design) para definición participativa de requisitos.",
+        "Generación automática de código mediante herramientas CASE de cuarta generación."
+      ],
+      "fases_o_practicas": [
+        "Planificación de Requisitos",
+        "Diseño de Usuario (Talleres JAD y prototipado)",
+        "Construcción Rápida (Generación de código y pruebas)",
+        "Transición y Corte a Producción"
+      ],
+      "ventajas": [
+        "Reducción sustancial del tiempo de desarrollo respecto a la cascada tradicional.",
+        "Retroalimentación directa y visible del cliente desde etapas tempranas."
+      ],
+      "desventajas": [
+        "Requiere compromiso de tiempo intensivo por parte de los usuarios clave.",
+        "Riesgo de arquitecturas frágiles o difícilmente mantenibles si se abusa de generadores automáticos."
+      ],
+      "casos_recomendados": "Sistemas de información administrativa y corporativa con componentes modulares claros y plazos de entrega muy cortos."
+    },
+    {
+      "id": "rop",
+      "nombre": "Requirements-Oriented Process (ROP)",
+      "categoria": "tradicional",
+      "creador_origen": "Estándares Militares y de Alta Regulación (DoD, IEEE)",
+      "año": 1995,
+      "filosofia": "La formalización y trazabilidad vertical exhaustiva de requisitos constituye el núcleo rector invariable del proyecto.",
+      "caracteristicas": [
+        "Trazabilidad bidireccional estricta: Requisito -> Caso de Uso -> Módulo de Código -> Caso de Prueba.",
+        "Especificación matemática y estructurada para prevenir omisiones funcionales y 'gold plating'.",
+        "Auditorías formales de conformidad regulatoria en cada compuerta técnica."
+      ],
+      "fases_o_practicas": [
+        "Elicitación y descomposición formal de requisitos.",
+        "Elaboración de matrices de consistencia y cobertura.",
+        "Validación contractual y auditoría de trazabilidad."
+      ],
+      "ventajas": [
+        "Gobernanza absoluta, cumplimiento de normas de auditoría y respaldo legal.",
+        "Cero desviaciones no autorizadas respecto al contrato del sistema."
+      ],
+      "desventajas": [
+        "Extrema rigidez procedimental y lenta adaptación frente a cambios del mercado."
+      ],
+      "casos_recomendados": "Sistemas bancarios centrales, compensación y liquidación fiscal, infraestructura gubernamental y telecomunicaciones reguladas."
+    },
+    {
+      "id": "ssadm",
+      "nombre": "Structured Systems Analysis and Design Method (SSADM)",
+      "categoria": "tradicional",
+      "creador_origen": "Central Computer and Telecommunications Agency (CCTA, Reino Unido)",
+      "año": 1980,
+      "filosofia": "Análisis y diseño estructurado basado en tres vistas complementarias: datos lógicos, flujo de procesos y eventos temporales.",
+      "caracteristicas": [
+        "Uso intensivo de Diagramas Entidad-Relación (DER), Diagramas de Flujo de Datos (DFD) e Historias de Vida de Entidades (ELH).",
+        "Ciclo dividido en 5 etapas modulares rigurosamente auditadas.",
+        "Separación total entre el diseño lógico del sistema y su diseño físico de implementación."
+      ],
+      "fases_o_practicas": [
+        "Estudio de Viabilidad",
+        "Análisis de Requisitos",
+        "Especificación del Sistema Requerido",
+        "Selección de Opciones Técnicas",
+        "Diseño Lógico y Físico de Datos y Procesos"
+      ],
+      "ventajas": [
+        "Representación profunda de los datos y flujo de información institucional.",
+        "Independencia de la arquitectura lógica frente a proveedores de hardware o software específicos."
+      ],
+      "desventajas": [
+        "Pesada burocracia documental y baja adaptabilidad al paradigma orientado a objetos moderno."
+      ],
+      "casos_recomendados": "Grandes sistemas de información gubernamentales y bases de datos públicas del sector civil."
+    },
+    {
+      "id": "scrum",
+      "nombre": "Scrum",
+      "categoria": "agil",
+      "creador_origen": "Ken Schwaber y Jeff Sutherland",
+      "año": 1995,
+      "filosofia": "Control empírico de procesos basado en tres pilares: Transparencia, Inspección y Adaptación. El conocimiento se obtiene de la experiencia y los hechos reales observados.",
+      "caracteristicas": [
+        "Iteraciones de tiempo fijo llamadas Sprints (de 1 a 4 semanas).",
+        "Equipos multidisciplinarios autoorganizados (5 a 9 desarrolladores).",
+        "Entrega de un incremento de software potencialmente desplegable al cierre de cada ciclo.",
+        "Roles claros: Product Owner (valor y backlog), Scrum Master (guía metodológica y facilitador) y Desarrolladores (construcción técnica)."
+      ],
+      "fases_o_practicas": [
+        "Sprint Planning: Planificación del objetivo y alcance del Sprint.",
+        "Daily Scrum: Evento diario de 15 minutos de inspección y sincronización.",
+        "Sprint Review: Demostración funcional del incremento terminado frente a interesados.",
+        "Sprint Retrospective: Reflexión interna para implementar mejoras continuas.",
+        "Artefactos: Product Backlog (meta de producto), Sprint Backlog (meta de sprint) e Incremento (Definition of Done)."
+      ],
+      "ventajas": [
+        "Adaptabilidad rápida ante prioridades comerciales cambiantes.",
+        "Visibilidad temprana y continua del producto funcionando.",
+        "Empoderamiento y alta motivación en el equipo técnico."
+      ],
+      "desventajas": [
+        "Vulnerable al desvío de alcance si el Product Owner carece de visión clara o autonomía.",
+        "No prescribe prácticas de ingeniería de software directas (debe combinarse con XP o DevOps)."
+      ],
+      "casos_recomendados": "Productos digitales, plataformas SaaS, aplicaciones web/móviles y entornos de mercado altamente dinámicos."
+    },
+    {
+      "id": "kanban",
+      "nombre": "Kanban",
+      "categoria": "agil",
+      "creador_origen": "David J. Anderson (basado en el Sistema de Producción de Toyota)",
+      "año": 2007,
+      "filosofia": "Gestión visual del flujo continuo de valor técnico, minimizando el trabajo en progreso y reduciendo el tiempo de entrega sin iteraciones fijas obligatorias.",
+      "caracteristicas": [
+        "Visualización completa del flujo de trabajo en columnas representativas.",
+        "Límites estrictos de Trabajo en Progreso (WIP - Work in Progress).",
+        "Sistema de extracción (Pull System) donde las tareas avanzan cuando se libera capacidad.",
+        "Políticas explícitas de entrada y salida para cada estado del tablero."
+      ],
+      "fases_o_practicas": [
+        "Mapeo de la cadena de valor (Value Stream Mapping).",
+        "Aplicación de la Ley de Little: Cycle Time = WIP / Throughput.",
+        "Gestión continua del flujo y detección inmediata de cuellos de botella.",
+        "Reuniones de sincronización de flujo y revisiones de entrega."
+      ],
+      "ventajas": [
+        "Elimina las pérdidas de productividad provocadas por la sobrecarga y multitarea.",
+        "Facilidad de adopción evolutiva sobre procesos y estructuras existentes sin imponer nuevos roles.",
+        "Ideal para flujos continuos de mantenimiento y soporte de incidentes."
+      ],
+      "desventajas": [
+        "Falta de cadencia temporal fija puede dificultar la previsión presupuestaria a largo plazo.",
+        "Exige alta disciplina del equipo para respetar rigurosamente los límites de WIP."
+      ],
+      "casos_recomendados": "Operaciones de mantenimiento de software, soporte técnico L2/L3, DevOps, mesas de ayuda y equipos con solicitudes bajo demanda."
+    },
+    {
+      "id": "xp",
+      "nombre": "Extreme Programming (XP)",
+      "categoria": "agil",
+      "creador_origen": "Kent Beck",
+      "año": 1999,
+      "filosofia": "Excelencia técnica y prácticas rigurosas de codificación llevadas al extremo para responder velozmente a requerimientos volátiles.",
+      "caracteristicas": [
+        "Ciclos de desarrollo cortos (1-2 semanas) con retroalimentación ininterrumpida.",
+        "La calidad del código es innegociable y se construye desde el primer minuto.",
+        "Énfasis en diseño simple, erradicando la sobreingeniería especulativa (YAGNI)."
+      ],
+      "fases_o_practicas": [
+        "Test-Driven Development (TDD): Ciclo Red-Green-Refactor.",
+        "Pair Programming: Dos desarrolladores colaborando en una sola terminal (Driver y Navigator).",
+        "Integración Continua (CI): Fusión y testeo del código múltiples veces al día.",
+        "Refactorización Continua: Optimización sistemática de la estructura interna del código.",
+        "Propiedad Colectiva del Código: Cualquier desarrollador puede modificar y mejorar cualquier módulo.",
+        "Cliente en el Equipo (On-site Customer): Presencia diaria del usuario para resolver dudas inmediatas."
+      ],
+      "ventajas": [
+        "Calidad intrínseca excepcional del código y suites de pruebas automatizadas invaluables.",
+        "Baja tasa de defectos residuales y reducción de deuda técnica.",
+        "Transferencia de conocimiento constante entre desarrolladores por el trabajo en parejas."
+      ],
+      "desventajas": [
+        "Resistencia cultural al pair programming en organizaciones tradicionales.",
+        "Demanda alta disciplina técnica y madurez por parte de los desarrolladores."
+      ],
+      "casos_recomendados": "Sistemas con alta complejidad algorítmica, módulos transaccionales críticos, startups tecnológicas y equipos que buscan cero defectos."
+    },
+    {
+      "id": "lean",
+      "nombre": "Lean Software Development",
+      "categoria": "agil",
+      "creador_origen": "Mary y Tom Poppendieck",
+      "año": 2003,
+      "filosofia": "Traducción de los principios de Manufactura Esbelta (Toyota Lean) al desarrollo de software, maximizando el valor para el cliente mediante la erradicación sistemática del desperdicio (Muda).",
+      "caracteristicas": [
+        "Enfoque en la eficiencia global de la cadena de valor (Value Stream).",
+        "Toma de decisiones postergada hasta el momento en que se cuente con máxima certidumbre empírica.",
+        "Construcción de integridad de extremo a extremo mediante pruebas tempranas y arquitectura limpia."
+      ],
+      "fases_o_practicas": [
+        "1. Eliminar el desperdicio (Muda): Suprimir código superfluo, demoras burocráticas y reprocesos.",
+        "2. Amplificar el aprendizaje mediante ciclos experimentales cortos.",
+        "3. Decidir lo más tarde posible (Last Responsible Moment).",
+        "4. Entregar tan rápido como sea posible para acelerar el retorno de inversión.",
+        "5. Empoderar al equipo técnico descentralizando el control.",
+        "6. Construir con calidad integrada desde el origen.",
+        "7. Optimizar la totalidad del sistema (Systems Thinking)."
+      ],
+      "ventajas": [
+        "Enfoque económico impecable que maximiza el ROI del desarrollo de software.",
+        "Eliminación de burocracia innecesaria y reducción drástica de tiempos de ciclo."
+      ],
+      "desventajas": [
+        "Requiere un cambio de mentalidad radical a nivel de toda la organización gerencial."
+      ],
+      "casos_recomendados": "Estrategias de innovación digital, transformación ágil empresarial, startups Lean y optimización de factorías de software."
+    },
+    {
+      "id": "crystal",
+      "nombre": "Familia Crystal",
+      "categoria": "agil",
+      "creador_origen": "Alistair Cockburn",
+      "año": 1998,
+      "filosofia": "El desarrollo de software es un 'juego cooperativo de invención y comunicación'. El método debe calibrarse según el tamaño del equipo y la criticidad del sistema.",
+      "caracteristicas": [
+        "Matriz de colores por tamaño: Crystal Clear (1-6 personas), Yellow (7-20), Orange (21-40), Red (41-80), Maroon (81-200).",
+        "Clasificación por criticidad: Confort (C), Dinero discrecional (D), Dinero esencial (E), Vidas humanas (L).",
+        "A mayor criticidad y tamaño del equipo, mayor rigor y densidad documental obligatoria."
+      ],
+      "fases_o_practicas": [
+        "Entrega frecuente de código funcional.",
+        "Mejora reflexiva periódica en equipo.",
+        "Comunicación osmótica (intercambio natural de información en espacios compartidos).",
+        "Seguridad personal para expresar ideas y señalar errores.",
+        "Foco y concentración técnica sostenida."
+      ],
+      "ventajas": [
+        "Adaptabilidad contextual perfecta: no impone una solución monolítica para todos los problemas.",
+        "Prioriza las habilidades humanas y la comunicación interpersonal sobre los procesos rígidos."
+      ],
+      "desventajas": [
+        "Menor disponibilidad de certificaciones y herramientas comerciales estandarizadas en el mercado."
+      ],
+      "casos_recomendados": "Organizaciones con portafolios diversos que requieren calibrar métodos livianos para células pequeñas y métodos más densos para proyectos críticos."
+    },
+    {
+      "id": "dsdm",
+      "nombre": "Dynamic Systems Development Method (DSDM / AgilePM)",
+      "categoria": "agil",
+      "creador_origen": "DSDM Consortium (Reino Unido)",
+      "año": 1994,
+      "filosofia": "Fija formalmente el tiempo, costo y calidad, convirtiendo al alcance funcional en la única variable flexible de ajuste en el proyecto.",
+      "caracteristicas": [
+        "Timeboxing estricto e innegociable.",
+        "Técnica formal de priorización MoSCoW (Must, Should, Could, Won't have).",
+        "Gobernanza ágil formal con roles de negocio, gestión, técnicos y de calidad claramente definidos."
+      ],
+      "fases_o_practicas": [
+        "Fase Pre-proyecto",
+        "Fase de Viabilidad y Fundamentos (Feasibility & Foundations)",
+        "Exploración e Ingeniería Iterativa (Timeboxes)",
+        "Despliegue y Fase Post-proyecto"
+      ],
+      "ventajas": [
+        "Garantía inquebrantable de cumplimiento de plazos y presupuesto.",
+        "Gobernanza estructurada que facilita su adopción en empresas corporativas y administraciones públicas."
+      ],
+      "desventajas": [
+        "Requiere un estricto compromiso del cliente para aceptar que los elementos 'Could have' puedan no entregarse."
+      ],
+      "casos_recomendados": "Proyectos corporativos con fechas límite de lanzamiento inamovibles (campañas de marketing, eventos globales o plazos regulatorios)."
+    },
+    {
+      "id": "fdd",
+      "nombre": "Feature-Driven Development (FDD)",
+      "categoria": "agil",
+      "creador_origen": "Jeff De Luca y Peter Coad",
+      "año": 1997,
+      "filosofia": "Desarrollo ágil estructurado guiado por rasgos o funcionalidades concretas orientadas a objetos, entregables en ciclos menores a dos semanas.",
+      "caracteristicas": [
+        "Foco en la descomposición del dominio en pequeños 'rasgos' (features).",
+        "Uso de propietarios individuales de clases (Class Ownership) y equipos de rasgos dinámicos.",
+        "Seguimiento visual cuantitativo del avance mediante porcentajes de terminación de rasgos."
+      ],
+      "fases_o_practicas": [
+        "1. Desarrollar el modelo global de dominio.",
+        "2. Construir la lista priorizada de rasgos funcionales.",
+        "3. Planificar por rasgo (asignación de clases y dependencias).",
+        "4. Diseñar por rasgo (secuencias UML e inspección).",
+        "5. Construir por rasgo (codificación, pruebas unitarias e integración)."
+      ],
+      "ventajas": [
+        "Excelente escalabilidad para proyectos medianos y grandes orientados a objetos.",
+        "Métricas muy claras de avance real comprensibles para clientes y directivos."
+      ],
+      "desventajas": [
+        "Depende de la calidad inicial del modelo conceptual de objetos.",
+        "El modelo de propiedad individual de clases puede generar silos si no se gestiona colaborativamente."
+      ],
+      "casos_recomendados": "Grandes sistemas empresariales desarrollados bajo tecnologías orientadas a objetos (Java, C++, .NET) con modelos de datos complejos."
+    },
+    {
+      "id": "asd",
+      "nombre": "Adaptive Software Development (ASD)",
+      "categoria": "agil",
+      "creador_origen": "Jim Highsmith",
+      "año": 2000,
+      "filosofia": "Modelado del desarrollo de software como la gestión de sistemas adaptativos complejos, sustituyendo el determinismo por el aprendizaje evolutivo continuo.",
+      "caracteristicas": [
+        "Sustituye el ciclo tradicional Planificar-Diseñar-Construir por la tríada Especular-Colaborar-Aprender.",
+        "Fomenta la tolerancia a la incertidumbre y la toma de riesgos constructiva.",
+        "Orientado a misiones funcionales antes que al cumplimiento estricto de planes preestablecidos."
+      ],
+      "fases_o_practicas": [
+        "Especulación: Formulación de hipótesis de producto, plazos y objetivos de la iteración.",
+        "Colaboración: Cooperación multidisciplinaria intensiva para resolver problemas técnicos imprevistos.",
+        "Aprendizaje: Sesiones de retroalimentación reflexiva, pruebas con usuarios e inspecciones técnicas."
+      ],
+      "ventajas": [
+        "Mentalidad idónea para proyectos disruptivos e investigación de tecnologías emergentes.",
+        "Fomenta la innovación genuina y la resiliencia organizativa."
+      ],
+      "desventajas": [
+        "Menor estructura procedimental y escasez de artefactos tangibles estandarizados."
+      ],
+      "casos_recomendados": "Investigación y desarrollo (I+D), prototipado de tecnologías de inteligencia artificial y exploración de mercados desconocidos."
+    },
+    {
+      "id": "safe",
+      "nombre": "Scaled Agile Framework (SAFe)",
+      "categoria": "escalado",
+      "creador_origen": "Dean Leffingwell",
+      "año": 2011,
+      "filosofia": "Alineación estratégica y ejecución técnica para grandes corporaciones, escalando la agilidad, el pensamiento Lean y DevOps a miles de colaboradores.",
+      "caracteristicas": [
+        "Estructura modular en 4 configuraciones: Essential, Large Solution, Portfolio y Full SAFe.",
+        "Sincronización de múltiples equipos ágiles dentro de un Agile Release Train (ART) de 50 a 125 personas.",
+        "Alineación mediante eventos trimestrales presenciales o virtuales de PI Planning (Program Increment)."
+      ],
+      "fases_o_practicas": [
+        "PI Planning: Evento de dos días donde los equipos del ART sincronizan dependencias y definen metas conjuntas.",
+        "Iteraciones de innovación y planificación (IP Iteration).",
+        "Cadencia compartida y sincronización de entregas mediante Continuous Delivery Pipeline.",
+        "Gestión de Portafolio Lean con tableros Kanban estratégicos."
+      ],
+      "ventajas": [
+        "Permite gobernar y alinear dependencias entre cientos de desarrolladores en corporaciones masivas.",
+        "Excelente integración de la estrategia corporativa y presupuestaria con la ejecución técnica."
+      ],
+      "desventajas": [
+        "Elevada sobrecarga burocrática y terminológica percibida a veces como una 're-jerarquización' de la agilidad.",
+        "Costo muy elevado de capacitación, consultoría y certificación formal."
+      ],
+      "casos_recomendados": "Bancos multinacionales, aseguradoras globales, consorcios aeroespaciales y empresas gubernamentales con más de 100 ingenieros."
+    },
+    {
+      "id": "less",
+      "nombre": "Large-Scale Scrum (LeSS)",
+      "categoria": "escalado",
+      "creador_origen": "Craig Larman y Bas Vodde",
+      "año": 2005,
+      "filosofia": "Desescalar la complejidad burocrática ('Descaling'). Aplicar los principios puros de Scrum a múltiples equipos interconectados sin crear capas administrativas intermedias.",
+      "caracteristicas": [
+        "Un solo Product Backlog para todo el producto.",
+        "Un solo Product Owner para priorizar el valor de todos los equipos.",
+        "Una única definición de terminado (Definition of Done) y un Sprint compartido simultáneo.",
+        "Coordinación inter-equipos descentralizada y directa entre los propios desarrolladores."
+      ],
+      "fases_o_practicas": [
+        "Sprint Planning 1 (conjunto para todos los equipos) y Sprint Planning 2 (por equipo individual).",
+        "Coordinación informal continua mediante líderes de comunidad (Communities of Practice).",
+        "Sprint Review y Retrospectiva conjunta (Overall Retrospective) para mejorar el sistema completo."
+      ],
+      "ventajas": [
+        "Preserva la esencia ligera y autónoma de Scrum evitando la burocracia añadida de otros marcos.",
+        "Fomenta una visión holística del producto en lugar de silos departamentales."
+      ],
+      "desventajas": [
+        "Exige un altísimo nivel de madurez técnica, excelencia en integración continua y gran disciplina organizativa."
+      ],
+      "casos_recomendados": "Organizaciones tecnológicas medianas (de 2 a 8 equipos, o hasta 20 en LeSS Huge) que ya dominan Scrum y buscan coordinarse sin burocracia."
+    },
+    {
+      "id": "spotify",
+      "nombre": "Modelo Spotify (Tribes, Squads, Chapters & Guilds)",
+      "categoria": "escalado",
+      "creador_origen": "Henrik Kniberg y Anders Ivarsson (Spotify)",
+      "año": 2012,
+      "filosofia": "Organización basada en el balance entre máxima autonomía local y estricta alineación estratégica ('Alianza entre alineación y autonomía').",
+      "caracteristicas": [
+        "Squads: Células multidisciplinarias autónomas (estilo minienterprise) con misión de producto de extremo a extremo.",
+        "Tribes: Comunidades de squads que trabajan en un mismo dominio funcional (máximo 100-150 personas, número de Dunbar).",
+        "Chapters: Líneas de competencia técnica funcional (ej. desarrolladores backend, testers) lideradas por un Chapter Lead.",
+        "Guilds: Redes de interés abiertas y transversales para toda la empresa para compartir aprendizajes e innovaciones."
+      ],
+      "fases_o_practicas": [
+        "Arquitectura desacoplada basada en microservicios independientes.",
+        "Lanzamientos continuos mediante conmutadores de características (Feature Toggles / Feature Flags).",
+        "Cultura de tolerancia al fallo seguro (Fail Fast, Learn Faster)."
+      ],
+      "ventajas": [
+        "Fomenta una cultura vibrante de innovación, velocidad de desarrollo y pertenencia técnica.",
+        "Escalamiento horizontal sin generar estructuras jerárquicas rígidas."
+      ],
+      "desventajas": [
+        "No fue diseñado como un marco metodológico reproducible, sino como un registro histórico de cultura interna.",
+        "Dificultad para alinear consistencia arquitectural si los capítulos no son sólidos."
+      ],
+      "casos_recomendados": "Empresas digitales de rápido crecimiento, plataformas de streaming, fintechs y startups tecnológicas de alta cultura innovadora."
+    },
+    {
+      "id": "shape-up",
+      "nombre": "Shape Up",
+      "categoria": "contemporaneo",
+      "creador_origen": "Ryan Singer (Basecamp)",
+      "año": 2019,
+      "filosofia": "Eliminación de ceremonias diarias y backlogs interminables. El desarrollo se concibe en ciclos de 6 semanas de concentración absoluta con apetito acotado.",
+      "caracteristicas": [
+        "Ciclos de trabajo de 6 semanas seguidos por 2 semanas de Cool-down (tiempo libre para refactorizar y resolver bugs).",
+        "Separación total entre la fase de moldeado conceptual (Shaping) y la fase de construcción (Building).",
+        "No existen los backlogs acumulativos: las ideas no seleccionadas se descartan y deben volver a postularse si son valiosas.",
+        "Monitoreo de avance mediante gráficos de colina (Hill Charts) que miden la certidumbre de resolución."
+      ],
+      "fases_o_practicas": [
+        "1. Shaping: Líderes resuelven incertidumbres, definen el apetito de tiempo (2 o 6 semanas) y trazan interfaces esquemáticas (Fat Marker Sketches).",
+        "2. Betting: Mesa de apuestas directiva donde se asignan proyectos cerrados a equipos autónomos.",
+        "3. Building: Equipos de 2-3 ingenieros con autonomía total para diseñar, codificar e integrar la solución.",
+        "4. Cool-down: 2 semanas de pausa técnica para tareas operativas y preparación del siguiente ciclo."
+      ],
+      "ventajas": [
+        "Erradica la fatiga provocada por ceremonias repetitivas y reuniones diarias innecesarias.",
+        "Proporciona a los desarrolladores bloques ininterrumpidos de tiempo profundo de trabajo (Deep Work).",
+        "Entregas de producto terminadas y funcionales cada 6 semanas con alcance predecible."
+      ],
+      "desventajas": [
+        "Exige diseñadores y líderes técnicos de gran calibre capaces de hacer un shaping certero.",
+        "Poco tolerante a cambios sobre la marcha una vez iniciadas las 6 semanas de construcción."
+      ],
+      "casos_recomendados": "Empresas de producto SaaS consolidadas, equipos de ingeniería de alto rendimiento y compañías orientadas a la innovación sin burocracia."
+    },
+    {
+      "id": "devops-devsecops",
+      "nombre": "DevOps y DevSecOps",
+      "categoria": "contemporaneo",
+      "creador_origen": "Patrick Debois, Gene Kim, Jez Humble y John Willis",
+      "año": 2009,
+      "filosofia": "Unificación de la ingeniería de desarrollo (Dev), la seguridad (Sec) y las operaciones de infraestructura (Ops) en un flujo ininterrumpido y automatizado de entrega continua de valor.",
+      "caracteristicas": [
+        "Filosofía CALMS: Cultura, Automatización, Lean, Medición y Compartir (Sharing).",
+        "Infraestructura definida programáticamente mediante código (Infrastructure as Code - IaC).",
+        "Seguridad integrada desde las etapas más tempranas de diseño (Shift-Left Security)."
+      ],
+      "fases_o_practicas": [
+        "Integración Continua (CI): Compilaciones automatizadas, pruebas unitarias e inspecciones SAST en cada pull request.",
+        "Entrega Continua / Despliegue Continuo (CD): Pipelines automatizados hacia entornos de staging y producción.",
+        "Pruebas dinámicas de seguridad (DAST), análisis de dependencias de terceros (SCA) y gestión de secretos.",
+        "Monitoreo de observabilidad proactiva (APM, logs centralizados, métricas y tracing distribuido)."
+      ],
+      "ventajas": [
+        "Reducción drástica del Lead Time: despliegues en minutos en lugar de meses.",
+        "Tasa casi nula de fallos en despliegues productivos gracias a la reproducibilidad de pipelines.",
+        "Alta resiliencia operativa y recuperación inmediata ante incidentes (MTTR muy bajo)."
+      ],
+      "desventajas": [
+        "Exige inversión tecnológica considerable en herramientas de observabilidad y nube.",
+        "Requiere derribar barreras culturales históricas entre áreas operativas y de desarrollo."
+      ],
+      "casos_recomendados": "Cualquier entorno de desarrollo de software moderno en la nube, arquitecturas de microservicios y sistemas empresariales de alta disponibilidad."
+    }
+  ],
+  "modelado_funcional": {
+    "patologias_lenguaje_natural": [
+      {
+        "defecto": "Ambigüedad Semántica",
+        "consecuencia": "La polisemia de las palabras provoca interpretaciones divergentes entre analistas, arquitectos e ingenieros."
+      },
+      {
+        "defecto": "Incompletitud Estructural",
+        "consecuencia": "Los textos libres omiten con facilidad condiciones de borde, contingencias de infraestructura y flujos de error."
+      },
+      {
+        "defecto": "Falta de Trazabilidad Dinámica",
+        "consecuencia": "Describe características estáticas pero oculta el intercambio temporal y transaccional de mensajes entre actores y el sistema."
+      }
+    ],
+    "casos_de_uso_jacobson": {
+      "año": 1992,
+      "obra": "Object-Oriented Software Engineering: A Use Case Driven Approach",
+      "autor": "Ivar Jacobson",
+      "definicion": "Secuencia estructurada de transacciones que el sistema ejecuta en interacción con un actor externo para producir un resultado observable de valor.",
+      "anatomia": [
+        { "componente": "Actor", "descripcion": "Rol externo (humano, sistema adyacente o hardware) que interactúa con las fronteras del software." },
+        { "componente": "Precondiciones", "descripcion": "Estados ineludibles que el sistema y el actor deben satisfacer antes de iniciar la interacción." },
+        { "componente": "Flujo Principal", "descripcion": "Secuencia numerada de eventos que representa el escenario normal de éxito (Happy Path)." },
+        { "componente": "Flujos Alternativos", "descripcion": "Desvíos operacionales válidos o rutas de contingencia que conducen al cumplimiento de la meta." },
+        { "componente": "Flujos de Excepción", "descripcion": "Tratamiento estructurado de errores, fallos de conectividad y reversión atómica de datos." },
+        { "componente": "Postcondiciones", "descripcion": "Garantías de integridad en las que permanece el sistema tras la culminación (éxito o rollback)." }
+      ],
+      "relaciones_uml": [
+        { "relacion": "<<include>>", "significado": "Invocación obligatoria y modular de un subflujo funcional compartido por varios casos de uso." },
+        { "relacion": "<<extend>>", "significado": "Comportamiento condicional y opcional que amplía un caso de uso base en un punto de extensión específico." }
+      ]
+    },
+    "matriz_comparativa_especificacion": [
+      {
+        "dimension": "Definición Conceptual",
+        "requisito_funcional": "Declaración formal y contractual de una capacidad técnica que el software debe proveer.",
+        "historia_usuario": "Descripción concisa orientada al valor de negocio expresada en el vocabulario del usuario.",
+        "caso_uso": "Especificación procedimental completa de la interacción transaccional entre un actor y el sistema."
+      },
+      {
+        "dimension": "Estructura Sintáctica",
+        "requisito_funcional": "«El sistema deberá [acción técnica] bajo [condición/normativa]».",
+        "historia_usuario": "«Como [rol/usuario], quiero [acción/función] para [beneficio/valor comercial]».",
+        "caso_uso": "Plantilla estructurada: Actor, Precondiciones, Pasos del Flujo Principal, Excepciones, Postcondiciones."
+      },
+      {
+        "dimension": "Mecanismo de Validación",
+        "requisito_funcional": "Inspecciones estáticas de documentación y matrices de auditoría contractual.",
+        "historia_usuario": "Criterios de aceptación empíricos acordados bajo técnica INVEST y sintaxis Given-When-Then.",
+        "caso_uso": "Ramas lógicas de ejecución que generan automáticamente casos de prueba de cobertura funcional."
+      },
+      {
+        "dimension": "Ecosistema de Uso Predilecto",
+        "requisito_funcional": "Metodologías tradicionales (Cascada, Modelo en V, ROP) y pliegos de licitación pública.",
+        "historia_usuario": "Marcos adaptativos ágiles (Scrum, Extreme Programming, Kanban, Lean).",
+        "caso_uso": "Proceso Unificado (RUP), sistemas transaccionales críticos y software bancario/aeronáutico."
+      }
+    ],
+    "matriz_trazabilidad_bancaria": [
+      {
+        "req_id": "REQ-FIN-01",
+        "descripcion": "El motor transaccional procesará transferencias interbancarias inmediatas validando fondos y reserva fiscal.",
+        "historia_usuario": "HU-01: Como usuario bancario deseo transferir fondos a terceros de forma inmediata para liquidar pagos.",
+        "caso_uso": "CU-01: Transferencia de Fondos Interbancaria",
+        "flujos_verificados": "Paso 1: Validación de saldo. Paso 2: Retención atómica. Alt A: Saldo insuficiente. Alt B: Timeout canal ACH.",
+        "pruebas_automatizadas": [
+          "CP-01-OK: Transferencia exitosa con débito y crédito atómico.",
+          "CP-01-ERR1: Rechazo preventivo por fondos insuficientes.",
+          "CP-01-ERR2: Rollback transaccional íntegro por caída de red interbancaria."
+        ]
+      },
+      {
+        "req_id": "REQ-FIN-02",
+        "descripcion": "El sistema exigirá autenticación biométrica multifactor para operaciones que superen umbrales de riesgo monetario.",
+        "historia_usuario": "HU-02: Como cuentahabiente requiero confirmación biométrica en transferencias altas para evitar fraudes.",
+        "caso_uso": "CU-02: Autenticación Multifactorial Avanzada",
+        "flujos_verificados": "Paso 1: Captura de vector biométrico. Alt A: Falla de reconocimiento facial. Alt B: Bloqueo tras 3 reintentos.",
+        "pruebas_automatizadas": [
+          "CP-02-OK: Emisión de token JWT firmado tras autenticación exitosa.",
+          "CP-02-SEC1: Reintento controlado con contador de seguridad.",
+          "CP-02-SEC2: Inhabilitación preventiva de cuenta por límite de reintentos."
+        ]
+      }
+    ]
+  },
+  "comparativas_globales": {
+    "paradigmas": [
+      {
+        "criterio": "Gestión del Alcance",
+        "predictivo": "Fijo, estricto y congelado contractualmente al inicio; cualquier cambio es penalizado.",
+        "adaptativo": "Evolutivo y dinámico; renegociado continuamente por valor de negocio e iteración.",
+        "hibrido": "Línea base arquitectural y normativas fijas; módulos periféricos flexibles."
+      },
+      {
+        "criterio": "Respuesta al Cambio",
+        "predictivo": "El cambio se interpreta como una perturbación o riesgo indeseado que amenaza costos y plazos.",
+        "adaptativo": "El cambio es bienvenido como una ventaja competitiva y oportunidad de mejora.",
+        "hibrido": "Gestionado mediante ventanas controladas de ajuste entre compuertas de fase."
+      },
+      {
+        "criterio": "Interacción con el Cliente",
+        "predictivo": "Contractual y distante: concentrada en la firma de especificaciones y en la entrega final.",
+        "adaptativo": "Continua, diaria y colaborativa a través de revisiones empíricas periódicas (demos).",
+        "hibrido": "Formal en hitos arquitecturales y continua durante los ciclos iterativos de desarrollo."
+      },
+      {
+        "criterio": "Gobernanza Documental",
+        "predictivo": "Exhaustiva, formal, auditada y legalmente vinculante para certificar fases.",
+        "adaptativo": "Enfocada en documentación operativa indispensable para el mantenimiento del código.",
+        "hibrido": "Documentación formal de la arquitectura base complementada con artefactos ágiles."
+      },
+      {
+        "criterio": "Estrategia de Calidad",
+        "predictivo": "Verificación formal pospuesta hacia fases avanzadas o compuertas simétricas.",
+        "adaptativo": "Pruebas continuas, automatizadas y ejecutadas dentro de cada incremento (TDD, CI/CD).",
+        "hibrido": "Verificación continua por fases combinada con suites de pruebas automáticas en cada entrega."
+      },
+      {
+        "criterio": "Mitigación de Riesgos",
+        "predictivo": "Análisis exhaustivo preventivo anticipado; vulnerable a fallos funcionales tardíos.",
+        "adaptativo": "Mitigación empírica mediante la entrega temprana y continua de software ejecutable.",
+        "hibrido": "Mitigación progresiva mediante prototipos tempranos y validación simétrica de arquitectura."
+      }
+    ]
+  },
+  "criterios_seleccion": {
+    "modelo_radar_boehm_turner": {
+      "descripcion": "Pentágono analítico desarrollado por Barry Boehm y Richard Turner para evaluar la posición de un proyecto entre agilidad pura y disciplina formal.",
+      "dimensiones": [
+        {
+          "dimension": "Tamaño del Equipo",
+          "escala_agil": "Menos de 10 personas operan óptimamente con agilidad adaptativa.",
+          "escala_predictiva": "Más de 40 personas requieren formalidad procedimental o agilidad a escala (SAFe/LeSS)."
+        },
+        {
+          "dimension": "Criticidad del Sistema",
+          "escala_agil": "Pérdida de comodidad (ámbito de Scrum/XP).",
+          "escala_predictiva": "Pérdida financiera esencial o riesgo de vidas humanas (ámbito innegociable de ROP, V-Model o Cleanroom)."
+        },
+        {
+          "dimension": "Dinamismo del Entorno (Volatilidad)",
+          "escala_agil": "Tasas de cambio mayores al 25% mensual exigen adaptación empírica rápida.",
+          "escala_predictiva": "Requisitos estables o inmutables justifican la predictibilidad de la cascada."
+        },
+        {
+          "dimension": "Cultura Organizacional",
+          "escala_agil": "Autonomía descentralizada, colaboración horizontal y tolerancia a la ambigüedad.",
+          "escala_predictiva": "Jerarquías estrictas, políticas corporativas de mando y auditorías permanentes."
+        },
+        {
+          "dimension": "Nivel de Competencia (Taxonomía de Cockburn)",
+          "niveles": [
+            { "nivel": "Nivel 3", "descripcion": "Especialistas capaces de diseñar nuevos métodos e innovar ante situaciones críticas no documentadas." },
+            { "nivel": "Nivel 2", "descripcion": "Ingenieros experimentados que adaptan y contextualizan prácticas conocidas a entornos reales." },
+            { "nivel": "Nivel 1A", "descripcion": "Desarrolladores capacitados para ejecutar prácticas discretas con supervisión técnica." },
+            { "nivel": "Nivel 1B", "descripcion": "Desarrolladores procedimentales orientados a seguir instrucciones explícitas en contextos estables." },
+            { "nivel": "Nivel -1", "descripcion": "Personal cuya indisciplina o carencia formativa degrada la productividad global del equipo." }
+          ]
+        }
+      ]
+    },
+    "matriz_complejidad_stacey": {
+      "descripcion": "Marco analítico que clasifica los proyectos según el grado de certidumbre en los requisitos (el Qué) y la tecnología (el Cómo).",
+      "zonas": [
+        {
+          "zona": "Simple",
+          "condicion": "Acuerdo alto en requisitos y certeza tecnológica absoluta.",
+          "metodologia_recomendada": "Cascada o Modelo en V (mejores prácticas probadas)."
+        },
+        {
+          "zona": "Complicada",
+          "condicion": "Metas claras pero soluciones técnicas desafiantes que demandan análisis profundo.",
+          "metodologia_recomendada": "RUP, Modelo Espiral o DSDM (análisis de expertos y prototipado)."
+        },
+        {
+          "zona": "Compleja",
+          "condicion": "Incertidumbre tanto en requisitos de negocio como en herramientas técnicas.",
+          "metodologia_recomendada": "Scrum, Extreme Programming o Kanban (control empírico e incrementos continuos)."
+        },
+        {
+          "zona": "Caótica",
+          "condicion": "Crisis operativa sin acuerdos ni certezas tecnológicas.",
+          "metodologia_recomendada": "Medidas de estabilización y contingencia inmediata antes de instaurar cualquier marco metodológico."
+        }
+      ]
+    }
+  },
+  "caso_integrador_bancario": {
+    "titulo": "Plataforma Nacional de Pagos Electrónicos",
+    "tipo_sistema": "Misión Crítica y Alta Concurrencia Transaccional",
+    "regulacion": "Banco Central y Autoridades de Control Fiscal",
+    "articulacion_metodologica": [
+      {
+        "modulo": "Gobernanza y Cumplimiento Regulatorio",
+        "metodologia_aplicada": "ROP (Requirements-Oriented Process) + Travel V",
+        "justificacion": "Las leyes financieras imponen requerimientos funcionales (REQ) inmutables con trazabilidad total. El Travel V permite validaciones transversales con modelos simulados de liquidación en tiempo real antes del despliegue."
+      },
+      {
+        "modulo": "Arquitectura del Motor Transaccional (Core Clearing)",
+        "metodologia_aplicada": "RUP (Rational Unified Process) + Casos de Uso",
+        "justificacion": "La fase de Elaboración de RUP mitiga los riesgos de alta concurrencia construyendo una línea base de arquitectura ejecutable. Los Casos de Uso estructurados formalizan flujos complejos como la conciliación interbancaria atómica y prevención de fraude."
+      },
+      {
+        "modulo": "Canales Digitales (Apps Móviles y Portales Web)",
+        "metodologia_aplicada": "Scrum + Historias de Usuario",
+        "justificacion": "La experiencia de usuario (UX) en banca móvil cambia velozmente por la competencia comercial. Células Scrum con Sprints de 2 semanas gestionan Historias de Usuario priorizadas por valor comercial."
+      },
+      {
+        "modulo": "Construcción del Código Transaccional",
+        "metodologia_aplicada": "Extreme Programming (XP) - TDD & Pair Programming",
+        "justificacion": "Para asegurar precisión monetaria y cero errores de redondeo, se exige TDD antes de codificar la lógica de liquidación, Pair Programming en módulos criptográficos sensibles y suites de Integración Continua (CI)."
+      },
+      {
+        "modulo": "Operaciones, Seguridad y Resiliencia",
+        "metodologia_aplicada": "DevSecOps + Tableros Kanban",
+        "justificacion": "Pipelines automatizados de CI/CD ejecutan análisis estático de vulnerabilidades (SAST/DAST) en cada release, mientras el flujo de incidentes operativos de soporte se gestiona bajo Kanban con límites estrictos de WIP."
+      }
+    ]
+  }
+}
